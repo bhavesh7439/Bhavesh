@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main { // Change class name to Main
+public class Main {
     public static void main(String[] args) {
         int choice, cont;
         Scanner c = new Scanner(System.in); // Single Scanner instance
@@ -13,28 +13,28 @@ public class Main { // Change class name to Main
 
             switch (choice) {
                 case 1:
-                    Programmer p = new Programmer();
+                    Programmer p = new Programmer(c); // Pass scanner to Programmer class
                     p.getData();
                     p.getBasicPay();
                     p.display();
                     p.Calculate();
                     break;
                 case 2:
-                    AssistantProfessor asst = new AssistantProfessor();
+                    AssistantProfessor asst = new AssistantProfessor(c); // Pass scanner to AssistantProfessor class
                     asst.getData();
                     asst.getBasicPay();
                     asst.display();
                     asst.Calculate();
                     break;
                 case 3:
-                    AssociateProfessor asso = new AssociateProfessor();
+                    AssociateProfessor asso = new AssociateProfessor(c); // Pass scanner to AssociateProfessor class
                     asso.getData();
                     asso.getBasicPay();
                     asso.display();
                     asso.Calculate();
                     break;
                 case 4:
-                    Professor prof = new Professor();
+                    Professor prof = new Professor(c); // Pass scanner to Professor class
                     prof.getData();
                     prof.getBasicPay();
                     prof.display();
@@ -57,8 +57,11 @@ class Employee {
     int empid;
     long mobile;
     String name, address, mailid;
+    Scanner g;
 
-    Scanner g = new Scanner(System.in);
+    Employee(Scanner scanner) {
+        this.g = scanner; // Use the passed scanner object
+    }
 
     void getData() {
         System.out.println("Enter Name of the Employee:");
@@ -71,6 +74,7 @@ class Employee {
         empid = g.nextInt();
         System.out.println("Enter Mobile Number:");
         mobile = g.nextLong();
+        g.nextLine(); // Consume the newline character after reading long value
     }
 
     void display() {
@@ -85,6 +89,10 @@ class Employee {
 // Professor class
 class Professor extends Employee {
     double bp, da, hra, pf, club, net, gross;
+
+    Professor(Scanner scanner) {
+        super(scanner); // Pass scanner to Employee class
+    }
 
     void getBasicPay() {
         System.out.println("Enter basic pay:");
@@ -114,6 +122,10 @@ class Professor extends Employee {
 class Programmer extends Employee {
     double bp, da, hra, pf, club, net, gross;
 
+    Programmer(Scanner scanner) {
+        super(scanner); // Pass scanner to Employee class
+    }
+
     void getBasicPay() {
         System.out.println("Enter basic pay:");
         bp = g.nextDouble();
@@ -141,6 +153,10 @@ class Programmer extends Employee {
 // AssistantProfessor class
 class AssistantProfessor extends Employee {
     double bp, da, hra, pf, club, net, gross;
+
+    AssistantProfessor(Scanner scanner) {
+        super(scanner); // Pass scanner to Employee class
+    }
 
     void getBasicPay() {
         System.out.println("Enter basic pay:");
@@ -170,6 +186,10 @@ class AssistantProfessor extends Employee {
 class AssociateProfessor extends Employee {
     double bp, da, hra, pf, club, net, gross;
 
+    AssociateProfessor(Scanner scanner) {
+        super(scanner); // Pass scanner to Employee class
+    }
+
     void getBasicPay() {
         System.out.println("Enter basic pay:");
         bp = g.nextDouble();
@@ -190,6 +210,6 @@ class AssociateProfessor extends Employee {
         System.out.println("PF: Rs. " + pf);
         System.out.println("CLUB: Rs. " + club);
         System.out.println("GROSS PAY: Rs. " + gross);
-        System.out.println("NET PAY: Rs. " + net);
-    }
+        System.out.println("NET PAY: Rs. " + net);
+    }
 }

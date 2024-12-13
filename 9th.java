@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.ArrayList; // Add this import for ArrayList
 import java.util.Scanner;
 
 class Customer {
@@ -87,10 +87,10 @@ class Account {
     }
 }
 
-public class Main { // Renamed BankingSystem to Main
+public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Account> accounts = new ArrayList<>();
+        ArrayList<Account> accounts = new ArrayList<>(); // Correct usage of ArrayList
 
         while (true) {
             System.out.println("\nBanking System Menu:");
@@ -139,7 +139,7 @@ public class Main { // Renamed BankingSystem to Main
                             System.out.println("Invalid deposit amount.");
                         }
                     } else {
-                        System.out.println("Invalid account number.");
+                        System.out.println("Invalid account number. Please try again.");
                     }
                     break;
 
@@ -158,7 +158,7 @@ public class Main { // Renamed BankingSystem to Main
                             System.out.println("Invalid withdrawal amount or exceeded daily withdrawal limit.");
                         }
                     } else {
-                        System.out.println("Invalid account number.");
+                        System.out.println("Invalid account number. Please try again.");
                     }
                     break;
 
@@ -172,7 +172,7 @@ public class Main { // Renamed BankingSystem to Main
                         double balance = checkBalanceAccount.checkBalance();
                         System.out.println("Account balance: $" + balance);
                     } else {
-                        System.out.println("Invalid account number.");
+                        System.out.println("Invalid account number. Please try again.");
                     }
                     break;
 
@@ -185,20 +185,20 @@ public class Main { // Renamed BankingSystem to Main
                         Account displayAccount = accounts.get(accountNumber - 1);
                         System.out.println(displayAccount.displayAccountInfo());
                     } else {
-                        System.out.println("Invalid account number.");
+                        System.out.println("Invalid account number. Please try again.");
                     }
                     break;
 
                 case 6:
                     // Exit the program
                     System.out.println("Exiting the Banking System.");
-                    scanner.close();
-                    System.exit(0);
+                    scanner.close(); // It's good practice to close scanner only when done
+                    return; // Exiting the main method gracefully
 
                 default:
                     System.out.println("Invalid choice. Please select a valid option.");
                     break;
             }
-        }
-    }
+        }
+    }
 }
